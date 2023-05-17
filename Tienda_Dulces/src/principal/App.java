@@ -13,7 +13,63 @@ public class App {
         Dulces bombom = new Dulces(Categoria.dulce, "bombombum ", 1, 500);
         ArrayList <Dulces> lista_dulces = new ArrayList <Dulces>();
         lista_dulces.add(bombom);
-        //boton 1
+        //boton1
+        //inserta nuevos dulces
+        System.out.print("Ingrese el número de dulces que desea agregar: ");
+        Scanner leernuevodulce = new Scanner(System.in);
+        int numDulces = leernuevodulce.nextInt();
+        for (int i = 0; i < numDulces; i++){
+            System.out.println("Seleccione la categoria del dulce:");
+            System.out.println("Ingresando datos para el dulce " + (i+1) + "...");
+            Categoria categorias = null;
+            boolean categoriaValida = false;
+            do {
+                System.out.println("Seleccione la categoria del dulce:");
+                System.out.println("1 - dulce");
+                System.out.println("2 - acido");
+                System.out.println("3 - sin azucar");
+                Scanner leer = new Scanner(System.in);
+                int opcioncategoria = leer.nextInt();
+                switch (opcioncategoria) {
+                    case 1:
+                        categorias = Categoria.dulce;
+                        categoriaValida = true;
+                        break;
+                    case 2:
+                        categorias = Categoria.acido;
+                        categoriaValida = true;
+                        break;
+                    case 3:
+                        categorias = Categoria.sin_azucar;
+                        categoriaValida = true;
+                        break;
+                    default:
+                        System.out.println("Opción inválida. Intente nuevamente.");
+                        break;
+                }
+            } while (!categoriaValida); 
+            System.out.println("Ingrese el nombre del dulce: ");
+            String nombre = leernuevodulce.nextLine();
+            
+            System.out.println("Ingrese el codigo del dulce: ");
+            int codigo = leernuevodulce.nextInt();
+
+            System.out.println("Ingrese el codigo del dulce: ");
+            double precio = leernuevodulce.nextDouble();
+
+            Dulces dulce = new Dulces(categorias, nombre, codigo, precio);
+            lista_dulces.add(dulce);
+
+
+
+            
+        }
+            
+
+
+
+        //boton 2
+        //actualiza el dulce
         System.out.println("Seleccione el dulce que desea actualizar:");
         for (int i = 0; i < lista_dulces.size(); i++) {
             System.out.println(i + 1 + " - " + lista_dulces.get(i).getNombre());
@@ -24,16 +80,16 @@ public class App {
         Dulces dulce = lista_dulces.get(opcionDulce - 1);
 
         //ingrese la categoria del dulce
-        //seleccione la nueva vacuna de la mascota
+        //seleccione la nueva categoria del dulce
         Categoria categorias = null;
         boolean categoriaValida = false;
         do {
-            System.out.println("Seleccione la nueva vacuna de la mascota:");
+            System.out.println("Seleccione la nueva categoria del dulce:");
             System.out.println("1 - dulce");
             System.out.println("2 - acido");
             System.out.println("3 - sin azucar");
-            int opcionVacuna = leer.nextInt();
-            switch (opcionVacuna) {
+            int opcioncategoria = leer.nextInt();
+            switch (opcioncategoria) {
                 case 1:
                     categorias = Categoria.dulce;
                     categoriaValida = true;
@@ -56,18 +112,18 @@ public class App {
         String nuevonombre = leer.next();
         dulce.setNombre(nuevonombre);
         //ingrese el nuevo codigo del dulce
-        System.out.println("Ingrese el nombre del dulce");
+        System.out.println("Ingrese el codigo del dulce");
         int nuevocodigo = leer.nextInt();
         dulce.setCodigo(nuevocodigo);
         //ingrese el nuevo precio del dulce
-        System.out.println("Ingrese el nombre del dulce");
-        int nuevoprecio = leer.nextInt();
+        System.out.println("Ingrese el precio del dulce");
+        Double nuevoprecio = leer.nextDouble();
         dulce.setPrecio(nuevoprecio);
 
+        
 
 
-
-        //boton 2
+        //boton 3
          //elminas el dulce del indice digitado
 
          // imprime los dulces
@@ -100,7 +156,7 @@ public class App {
                 System.out.println("No hay dulce con ese nombre.");
             }
         
-        //boton 5
+        //boton5
         // Imprimir el ArrayList de Dulces con un boton
         button.addActionListener(new ActionListener() {}
             for (int i = 0; i < lista_dulces.size(); i++) {
