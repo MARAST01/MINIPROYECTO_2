@@ -2,11 +2,11 @@ package logica;
 public class Dulces {
     private Categoria categoria;
     private String nombre;
-    private int codigo;
-    private double precio;
+    private String codigo;
+    private String precio;
     
     // Constructor de la clase
-    public Dulces(Categoria categoria, String nombre, int codigo, double precio) {
+    public Dulces(Categoria categoria, String nombre, String codigo, String precio) {
         this.categoria = categoria;
         this.nombre = nombre;
         this.codigo = codigo;
@@ -30,19 +30,19 @@ public class Dulces {
         this.nombre = nombre;
     }
     
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
     
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
     
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
     
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 }
