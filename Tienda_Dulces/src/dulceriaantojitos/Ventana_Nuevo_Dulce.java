@@ -3,11 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package dulceriaantojitos;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import logica.Categoria;
+import logica.Dulces;
+import logica.ListaDulces;
 /**
  *
- * @author marlo
+ * @authors
+ * marlon Astudillo
+ * Tina Torres
+ * Juan Jose Gallego
  */
+
 public class Ventana_Nuevo_Dulce extends javax.swing.JFrame {
 
     /**
@@ -169,9 +178,36 @@ public class Ventana_Nuevo_Dulce extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    //al darle click al boton, lo que este escrito en los Jtextfield y puesto en el combobox
+    //...será guardado como objeto en el arraylist
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
+        String categori = jComboBox1.getSelectedItem().toString();
+        Categoria categorias = null;
+            if ("Acido".equals(categori)){
+                categorias = Categoria.acido;
+
+            }
+            if ("Dulce".equals(categori)){
+                categorias = Categoria.dulce;
+
+            }
+            if ("Sin Azucar".equals(categori)){
+                categorias = Categoria.acido;
+
+            } 
+        String nombre = jTextField2.getText();
+        String codigo = jTextField1.getText();
+        String precio = jTextField3.getText();
+        Dulces dulce = new Dulces(categorias, nombre, codigo, precio);
+        ArrayList<Dulces> lista_dulces = ListaDulces.getInstance().getListaDulces();
+        lista_dulces.add(dulce);
+        JOptionPane.showMessageDialog(null, "haz guardado el dulce correctamente");
+        GUIAntojitos ventana1 = new GUIAntojitos();
+        ventana1.setVisible(true);
+        this.dispose();
+
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -181,7 +217,6 @@ public class Ventana_Nuevo_Dulce extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         
         
-        jComboBox1.addItem("hola");
         
 
 
