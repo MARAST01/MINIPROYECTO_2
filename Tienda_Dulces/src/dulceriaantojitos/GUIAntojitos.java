@@ -4,11 +4,18 @@
  */
 package dulceriaantojitos;
 
+import java.util.ArrayList;
+import logica.Dulces;
+
 /**
  *
- * @author Usuario
+ * @authors
+ * marlon Astudillo
+ * Tina Torres
+ * Juan Jose Gallego
  */
 public class GUIAntojitos extends javax.swing.JFrame {
+    static ArrayList<Dulces> lista_dulces;
 
     /**
      * Creates new form GUIAntojitos

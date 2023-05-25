@@ -3,10 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package dulceriaantojitos;
-
+import logica.Categoria;
+import logica.Dulces;
+import logica.ListaDulces;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
- * @author marlo
+ * @authors
+ * marlon Astudillo
+ * Tina Torres
+ * Juan Jose Gallego
  */
 public class Eliminar_Dulces extends javax.swing.JFrame {
 
@@ -33,9 +40,9 @@ public class Eliminar_Dulces extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 601));
         setSize(new java.awt.Dimension(800, 601));
 
         jButton1.setText("Regresar");
@@ -52,7 +59,7 @@ public class Eliminar_Dulces extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel2.setText("Digite el dulce que desea eliminar:");
+        jLabel2.setText("Digite el indice del dulce que desea eliminar:");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,21 +74,30 @@ public class Eliminar_Dulces extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Imprimir Dulces");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(551, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(61, 61, 61))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addGap(0, 6, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -95,8 +111,13 @@ public class Eliminar_Dulces extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton3)))
                 .addGap(48, 48, 48)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -116,14 +137,52 @@ public class Eliminar_Dulces extends javax.swing.JFrame {
         ventana1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    //al presionar el boton elimina del arraylist el objeto con el indice 
+    //que el usuario digito en el jtextfield,
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        ArrayList<Dulces> listaDulces = ListaDulces.getInstance().getListaDulces();
+        String indice = jTextField1.getText();
+        int indiceInt = Integer.parseInt(indice);
+        indiceInt-=1;
+        int indiceEliminar = indiceInt;
+        // Verificar si el índice es válido
+        if (indiceEliminar >= 0 && indiceEliminar < listaDulces.size()) {
+            // Eliminar el objeto del ArrayList en el índice indicado
+            listaDulces.remove(indiceEliminar);
+            JOptionPane.showMessageDialog(null, "Dulce eliminado correctamente");
+            GUIAntojitos ventana1 = new GUIAntojitos();
+            ventana1.setVisible(true);
+            this.dispose();
+        } else {
+            //accion cuando el índice no es válido
+            JOptionPane.showMessageDialog(null, "El índice no es válido");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // Obtener el ArrayList de Dulces
+        ArrayList<Dulces> listaDulces = ListaDulces.getInstance().getListaDulces();
+
+        // Limpiar el JTextArea antes de agregar el contenido
+        jTextArea1.setText("");
+
+        // Recorrer el ArrayList y agregar los atributos de cada objeto al JTextArea
+        for (int i = 0; i < listaDulces.size(); i++) {
+            Dulces dulce = listaDulces.get(i);
+            jTextArea1.append( 1+i +":");
+            jTextArea1.append("Nombre: " + dulce.getNombre() + ", " );
+            jTextArea1.append("Código: " + dulce.getCodigo() + ", ");
+            jTextArea1.append("Precio: " + dulce.getPrecio() + ", ");
+            jTextArea1.append("Categoría: " + dulce.getCategoria() + ". \n ");
+            jTextArea1.append("------------------\n");
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +222,7 @@ public class Eliminar_Dulces extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

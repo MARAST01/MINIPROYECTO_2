@@ -6,7 +6,10 @@ package dulceriaantojitos;
 
 /**
  *
- * @author Usuario
+ * @authors
+ * marlon Astudillo
+ * Tina Torres
+ * Juan Jose Gallego
  */
 public class DulceriaAntojitos {
 
