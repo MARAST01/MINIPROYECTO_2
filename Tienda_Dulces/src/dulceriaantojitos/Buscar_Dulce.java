@@ -3,10 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package dulceriaantojitos;
-
+import logica.Categoria;
+import logica.Dulces;
+import logica.ListaDulces;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
- * @author marlo
+* @authors
+ * marlon Astudillo
+ * Tina Torres
+ * Juan Jose Gallego
  */
 public class Buscar_Dulce extends javax.swing.JFrame {
 
@@ -49,7 +56,18 @@ public class Buscar_Dulce extends javax.swing.JFrame {
 
         jLabel2.setText("¿Qué dulce buscas por el nombre?");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -70,12 +88,12 @@ public class Buscar_Dulce extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTextField1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,6 +121,35 @@ public class Buscar_Dulce extends javax.swing.JFrame {
         ventana1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+    //al presionar el boton, lee el nombre que digito y lo compara, buscando
+    //en el arreglo un objeto que coincida con el metodo ".getNombre"
+    //para imprimirlo en un jtextarea
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ArrayList<Dulces> listaDulces = ListaDulces.getInstance().getListaDulces();
+        String nombreBuscar = jTextField1.getText();
+        boolean encontrado = false;
+        for (int i = 0; i < listaDulces.size(); i++) {
+            Dulces dulce = listaDulces.get(i);
+            if (dulce.getNombre().equalsIgnoreCase(nombreBuscar)) {
+            
+            jTextArea1.append( 1+i +":");
+            jTextArea1.append("Nombre: " + dulce.getNombre() + ", " );
+            jTextArea1.append("Código: " + dulce.getCodigo() + ", ");
+            jTextArea1.append("Precio: " + dulce.getPrecio() + ", ");
+            jTextArea1.append("Categoría: " + dulce.getCategoria() + ". \n ");
+            jTextArea1.append("------------------\n");
+            JOptionPane.showMessageDialog(null, "Dulce encontrado");
+            encontrado = true;
+                }
+            }    
+            if (!encontrado) {
+                JOptionPane.showMessageDialog(null, "no hay dulce con ese nombre.");
+            }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
